@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="auther" name="Giecel Tumbaga">
+  <title>Even/Odd</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+  <body>
+    <div id="results"></div>
+
+    <script>
+      let playerName = prompt("Welcome to the Even or Odd game! What is your name?");
+      let wins = 0;
+      let losses = 0;
+
+      function playGame() {
+          let playerChoice = prompt(`Hello ${playerName}! Do you choose even or odd?`).toLowerCase();
+
+          // Validate player input
+          while (playerChoice !== "even" && playerChoice !== "odd") {
+              playerChoice = prompt("Invalid choice. Please type 'even' or 'odd' (e.g., 'even')").toLowerCase();
+          }
+
+          // Generate two random numbers between 1 and 4
+          let randomNum1 = Math.floor(Math.random() * 4) + 1;
+          let randomNum2 = Math.floor(Math.random() * 4) + 1;
+          let sum = randomNum1 + randomNum2;
+          let result = sum % 2 === 0 ? "even" : "odd";
+          let winMessage = "";
+
+          // Determine if the player wins or loses
+          if (playerChoice === result) {
+              winMessage = `Congratulations ${playerName}, you chose ${playerChoice}, the sum was ${sum}, which is an ${result} number. You win!`;
+              wins++;
+          } else {
+              winMessage = `Sorry ${playerName}, you chose ${playerChoice}, the sum was ${sum}, which is an ${result} number. You lose.`;
+              losses++;
+          }
+
+          // Display game result and win/loss record
+          alert(`${winMessage}\nThat's ${wins} win(s) and ${losses} loss(es)!`);
+
+          let playAgain = confirm("Would you like to play again?");
+          if (playAgain) {
+              playGame();
+          }
+      }
+
+      playGame();
+
+
+    </script>
+  </body>
+
+</html>
